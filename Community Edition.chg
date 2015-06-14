@@ -5,3 +5,38 @@
 InstallationSessionManager removeFromSystem!
 
 "13:43:43, 14 czerwca 2015: Image saved"!
+
+Object subclass: #ContractBuilder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ContractBuilder guid: (GUID fromString: '{0198A206-47FA-4D11-9E67-939A143528C7}')!
+ContractBuilder comment: ''!
+!ContractBuilder categoriesForClass!Unclassified! !
+ProtoObject subclass: #Instrument
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+Instrument guid: (GUID fromString: '{EE67588F-9932-4A26-84ED-DCFBFB23B286}')!
+Instrument comment: ''!
+!Instrument categoriesForClass!Unclassified! !
+Error subclass: #ContractViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ContractViolation guid: (GUID fromString: '{B8E71392-E924-4A22-B9ED-9FBC0ACC1782}')!
+ContractViolation comment: ''!
+!ContractViolation categoriesForClass!Unclassified! !
+Error subclass: #ContractViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+"14:38:40, 14 czerwca 2015: Image saved"!
+
+"14:40:25, 14 czerwca 2015: Image saved"!
+
