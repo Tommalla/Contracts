@@ -40,3 +40,83 @@ Error subclass: #ContractViolation
 
 "14:40:25, 14 czerwca 2015: Image saved"!
 
+"19:21:27, 16 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+Object subclass: #CBClass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+CBClass guid: (GUID fromString: '{AA5CF289-B320-4A84-93E6-5B66093399B4}')!
+CBClass comment: ''!
+!CBClass categoriesForClass!Unclassified! !
+Object subclass: #CBClass
+	instanceVariableNames: 'c'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #CBClass
+	instanceVariableNames: 'c'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!ContractBuilder methodsFor!
+class: cls
+	|cbc|
+	cbc := CBClass new;
+	cbc c: cls;
+	cbc.! !
+!ContractBuilder categoriesFor: #class:!public! !
+
+!ContractBuilder methodsFor!
+class: cls
+	|cbc|
+	cbc := CBClass new.
+	cbc c: cls.
+	^ cbc.! !
+!ContractBuilder categoriesFor: #class:!public! !
+
+!
+
+!
+
+!
+
+cbc := CBClass new.!
+
+cbc.!
+
+Object subclass: #CBClass
+	instanceVariableNames: 'c'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBClass methodsFor!
+c: cls
+	c := cls! !
+!CBClass categoriesFor: #c:!public! !
+
+!CBClass methodsFor!
+c: cls
+	c := cls! !
+!CBClass categoriesFor: #c:!public! !
+
+!ClassBuilder methodsFor!
+class: cls
+	|cbc|
+	cbc := CBClass new.
+	cbc c: cls.
+	^cbc.! !
+!ClassBuilder categoriesFor: #class:!public! !
+
+!
+
+cb := ClassBuilder new!
+
+cb class: ClassBuilder!
+
+"21:16:08, 16 czerwca 2015: Image saved"!
+
