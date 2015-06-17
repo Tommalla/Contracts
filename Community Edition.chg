@@ -120,3 +120,173 @@ cb class: ClassBuilder!
 
 "21:16:08, 16 czerwca 2015: Image saved"!
 
+"18:05:28, 17 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+"20:06:12, 17 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+Object subclass: #ClassBuilder
+	instanceVariableNames: 'currentClass className instanceVariables superclass instanceSpec classVariables sharedPools comment flags categories cbcDict'
+	classVariableNames: 'FixedInitialLayout FixedLayout IgnoreInstsMask RecompileMask Unsubclassable'
+	poolDictionaries: '_BehaviorMasks'
+	classInstanceVariableNames: ''!
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^ (self new)
+	cbcDict: (Dictionary new);
+	yourself.! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^(self superclass) initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^(self new) initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^(self new) initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^(self new) initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+!ClassBuilder methodsFor!
+initialize
+	"Private - Initialize the instance."
+
+	instanceSpec := 0.
+	self beFixed.
+	flags := 0.
+	cbcDict := Dictionary new! !
+!ClassBuilder categoriesFor: #initialize!initializing!private! !
+
+d := Dictionary new;!
+
+d at: 1!
+
+d at: 1 ifAbsent: [d at: 1 put: 'a']!
+
+d at: 1 ifAbsent: [d at: 1 put: 1]a DevelopmentSessionManager!
+
+d at: 1 ifAbsent: [d at: 1 put: 1]!
+
+d at: 1 ifAbsent: []!
+
+d at: 1 ifAbsent: [];!
+
+d at: 1 ifAbsent: [^d];Dictionary!
+
+d at: 1 ifAbsent: [d];Dictionary!
+
+d at: 1 ifAbsent: [d.]!
+
+d at: 1 ifAbsent: [d;]!
+
+d at: 1 ifAbsent: [:dict | dict at: 1 put: 1]!
+
+d at: 1 ifAbsent: [:dict | dict at: 1 put: 1, dict]a DevelopmentSessionManager!
+
+d at: 1 ifAbsent: ([:dict | dict at: 1 put: 1, dict])a DevelopmentSessionManager!
+
+d at: 1 ifAbsent: [:dict | dict]a DevelopmentSessionManager!
+
+d at: 1 ifAbsent: [:dict | dict]!
+
+d at: 1!
+
+d at: 1 put: 1!
+
+d at: 1 put: 1.!
+
+|d|!
+
+d := Dictionary new;!
+
+d at: 1 put: 1!
+
+a := Dictionary new!
+
+a at: 1 put: 1!
+
+a!
+
+a!
+
+d at: 1 put: 1!
+
+d := Dictionary new;Dictionary
+d at: 1 put: 1!
+
+d := Dictionary new;!
+
+d at: 1 put: 1!
+
+d := Dictionary new!
+
+d at: 1 put: 1!
+
+d at: 1 ifAbsent: [d at: 1 put: 1]!
+
+d at: 1!
+
+d := Dictionary new!
+
+d at: 1 ifAbsent: [d at: 1 put: 1]!
+
+d at: 2!
+
+d at: 2 ifAbsent: [d at: 2 put: 2]!
+
+!ClassBuilder methodsFor!
+class: cls
+	cbcDict at: cls ifAbsent: [cbcDict at: cls put: (CBClass new)]! !
+!ClassBuilder categoriesFor: #class:!public! !
+
+!ClassBuilder methodsFor!
+class: cls
+	cbcDict at: cls ifAbsent: [cbcDict at: cls put: ((CBClass new) c: cls)]! !
+!ClassBuilder categoriesFor: #class:!public! !
+
+cb := ClassBuilder new!
+
+cb := ClassBuilder new!
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^(superclass new) initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^(superclass new) initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+cb := ClassBuilder new!
+
+cb class: ClassBuilder!
+
+!ClassBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^super new initialize! !
+!ClassBuilder class categoriesFor: #new!instance creation!public! !
+
+cb := ClassBuilder new!
+
+cb class: ClassBuilder!
+
+"20:54:38, 17 czerwca 2015: Image saved"!
+

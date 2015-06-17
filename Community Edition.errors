@@ -1,0 +1,720 @@
+20:21:40, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:
+Dictionary class(Object)>>at:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:25:54, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:26:17, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('BlockClosure does not understand #a')
+
+BlockClosure(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:26:19, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('DevelopmentSessionManager does not understand #DevelopmentSessionManager')
+
+DevelopmentSessionManager(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:26:20, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:26:57, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:27:30, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:29:40, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:29:52, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:31:45, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:31:53, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:31:58, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:33:47, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:34:09, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('BlockClosure does not understand #a')
+
+BlockClosure(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:34:26, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('BlockClosure does not understand #a')
+
+BlockClosure(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:40:14, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('BlockClosure does not understand #a')
+
+BlockClosure(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:40:19, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('DevelopmentSessionManager does not understand #DevelopmentSessionManager')
+
+DevelopmentSessionManager(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:40:20, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:40:25, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #at:ifAbsent:')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:40:35, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:
+Dictionary class(Object)>>at:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:40:50, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:put:
+Dictionary class(Object)>>at:put:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:42:26, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:put:
+Dictionary class(Object)>>at:put:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:44:21, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:put:
+Dictionary class(Object)>>at:put:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:46:08, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:put:
+Dictionary class(Object)>>at:put:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:46:36, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Dictionary class does not understand #Dictionary')
+
+Dictionary class(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+20:46:49, 17 czerwca 2015: Unhandled exception - an Error('not indexable')
+
+Dictionary class(Object)>>errorAt:put:
+Dictionary class(Object)>>at:put:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+20:48:26, 17 czerwca 2015: Unhandled exception - a NotFoundError('Not found: 2')
+
+Dictionary(Object)>>errorNotFound:
+Dictionary>>errorKeyNotFound:
+Dictionary>>at:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+----------------------------------------------------------------------------------------------------
+
+20:51:06, 17 czerwca 2015: Unhandled exception - a StackOverflow('Zbyt g³êboka rekursja, stos przepe³niony.')
+
+ProcessorScheduler>>stackOverflow:
+[] in ProcessorScheduler>>vmi:list:no:with:
+BlockClosure>>ifCurtailed:
+ProcessorScheduler>>vmi:list:no:with:
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+----------------------------------------------------------------------------------------------------
+
+20:51:16, 17 czerwca 2015: Unhandled exception - a StackOverflow('Zbyt g³êboka rekursja, stos przepe³niony.')
+
+ProcessorScheduler>>stackOverflow:
+[] in ProcessorScheduler>>vmi:list:no:with:
+BlockClosure>>ifCurtailed:
+ProcessorScheduler>>vmi:list:no:with:
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+ClassBuilder class>>new
+----------------------------------------------------------------------------------------------------
+
+20:53:22, 17 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Object does not understand #class:')
+
+Object>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
