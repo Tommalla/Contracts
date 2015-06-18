@@ -290,3 +290,98 @@ cb class: ClassBuilder!
 
 "20:54:38, 17 czerwca 2015: Image saved"!
 
+"09:25:53, 18 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+Object subclass: #ClassBuilder
+	instanceVariableNames: 'currentClass className instanceVariables superclass instanceSpec classVariables sharedPools comment flags categories'
+	classVariableNames: 'FixedInitialLayout FixedLayout IgnoreInstsMask RecompileMask Unsubclassable'
+	poolDictionaries: '_BehaviorMasks'
+	classInstanceVariableNames: ''!
+
+Object subclass: #ContractBuilder
+	instanceVariableNames: 'cbcDict'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #ContractBuilder
+	instanceVariableNames: 'cbcDict'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #ContractBuilder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #ContractBuilder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+"21:14:40, 18 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+Object subclass: #ContractBuilder
+	instanceVariableNames: 'cbcDict'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!ContractBuilder methodsFor!
+class: cls
+	cbcDict at: cls ifAbsent: [cbcDict at: cls put: ((CBClass new) c: cls)]! !
+!ContractBuilder categoriesFor: #class:!public! !
+
+!ContractBuilder methodsFor!
+initialize
+	cbcDict := Dictionary new! !
+!ContractBuilder categoriesFor: #initialize!public! !
+
+!ContractBuilder class methodsFor!
+new
+	"Answer a new initialized instance."
+	^super new initialize! !
+!ContractBuilder class categoriesFor: #new!public! !
+
+cb := ContractBuilder new!
+
+cb class: Context!
+
+!ContractBuilder methodsFor!
+class: cls
+	^(cbcDict at: cls ifAbsent: [cbcDict at: cls put: ((CBClass new) c: cls)])! !
+!ContractBuilder categoriesFor: #class:!public! !
+
+cb class: Context!
+
+!ClassBuilder methodsFor!
+class: aClass
+	"Private - Set the currentClass inst var to the class to be modified, aClass."
+
+	currentClass := aClass.
+	self instanceSpec: aClass instanceSpec.! !
+!ClassBuilder categoriesFor: #class:!public! !
+
+!ClassBuilder methodsFor!
+initialize
+	"Private - Initialize the instance."
+
+	instanceSpec := 0.
+	self beFixed.
+	flags := 0.! !
+!ClassBuilder categoriesFor: #initialize!initializing!private! !
+
+Object subclass: #ClassBuilder
+	instanceVariableNames: 'currentClass className instanceVariables superclass instanceSpec classVariables sharedPools comment flags categories'
+	classVariableNames: 'FixedInitialLayout FixedLayout IgnoreInstsMask RecompileMask Unsubclassable'
+	poolDictionaries: '_BehaviorMasks'
+	classInstanceVariableNames: ''!
+
+cb := ClassBuilder new!
+
+cb := ContractBuilder new!
+
+"21:22:04, 18 czerwca 2015: Image saved"!
+
