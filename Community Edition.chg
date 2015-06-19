@@ -385,3 +385,87 @@ cb := ContractBuilder new!
 
 "21:22:04, 18 czerwca 2015: Image saved"!
 
+"22:04:02, 19 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+Object subclass: #CBClass
+	instanceVariableNames: 'c invariantSet methodSet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBClass class methodsFor!
+new
+	"Answer a new initialized instance."
+	^super new initialize! !
+!CBClass class categoriesFor: #new!public! !
+
+!CBClass methodsFor!
+initialize
+	invariantSet := Set new.
+	methodSet := Set new.! !
+!CBClass categoriesFor: #initialize!public! !
+
+cb := ContractBuilder new!
+
+cb class: ContractBuilder!
+
+!CBClass methodsFor!
+addInvariant: inv
+	invariantSet add: inv! !
+!CBClass categoriesFor: #addInvariant:!public! !
+
+cb := ContractBuilder new!
+
+o := cb class: ContractBuilder!
+
+o addInvariant: [:cls | ^true]!
+
+!CBClass methodsFor!
+removeInvariant: inv
+	invariantSet remove: inv! !
+!CBClass categoriesFor: #removeInvariant:!public! !
+
+CBClass subclass: #CBMethod
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+CBMethod guid: (GUID fromString: '{A0B100F8-85ED-443D-B563-1BD230FD1FA7}')!
+CBMethod comment: ''!
+!CBMethod categoriesForClass!Unclassified! !
+CBClass subclass: #Object
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #CBMethod
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBClass methodsFor!
+method: meth
+	^(CBMethod new)! !
+!CBClass categoriesFor: #method:!public! !
+
+Object subclass: #CBClass
+	instanceVariableNames: 'c invariantSet methodDict'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBClass methodsFor!
+initialize
+	invariantSet := Set new.
+	methodDict := Dictionary new.! !
+!CBClass categoriesFor: #initialize!public! !
+
+!CBClass methodsFor!
+method: meth
+	^(methodDict at: meth ifAbsent: [methodDict at: meth put: (CBMethod new)])! !
+!CBClass categoriesFor: #method:!public! !
+
+"22:20:00, 19 czerwca 2015: Image saved"!
+
