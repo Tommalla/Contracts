@@ -1491,3 +1491,295 @@ method
 !ConditionViolation categoriesFor: #method!public! !
 
 "20:45:30, 20 czerwca 2015: Image saved"!
+
+ProtoObject subclass: #Instrument
+	instanceVariableNames: 'contr object'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!Instrument class methodsFor!
+contract: aContr on: aObj
+	^super new contract: aContr object: aObj! !
+!Instrument class categoriesFor: #contract:on:!public! !
+
+ProtoObject subclass: #Instrument
+	instanceVariableNames: 'contr obj'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Instrument class removeSelector: #new ifAbsent: []!
+
+!Instrument methodsFor!
+contract: aContr
+	contr := aContr.! !
+!Instrument categoriesFor: #contract:!public! !
+
+!Instrument methodsFor!
+object: aObj
+	obj := aObj.! !
+!Instrument categoriesFor: #object:!public! !
+
+!Instrument methodsFor!
+object: aObj
+	obj := aObj.! !
+!Instrument categoriesFor: #object:!public! !
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = Object) not ifTrue: [
+		res := res sum: (self class: cls).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = Object) ifFalse: [
+		res := res sum: (self class: cls).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = Object) ifFalse: [
+		res := res sum: (self class: cls).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: bc!
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: ao.!
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: (other methods).
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := (selfKeys intersection: otherKeys).
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: (invariantSet union: other invariants).
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: (other methods).
+	selfKeys := methodDict keys.
+	otherKeys := (other methods) keys.
+	commonKeys := (selfKeys intersection: otherKeys).
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: (invariantSet union: other invariants).
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: ao.!
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: ((other methods) collection).
+	selfKeys := methodDict keys.
+	otherKeys := (other methods) keys.
+	commonKeys := (selfKeys intersection: otherKeys).
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: (invariantSet union: other invariants).
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: ((other methods) associations).
+	selfKeys := methodDict keys.
+	otherKeys := (other methods) keys.
+	commonKeys := (selfKeys intersection: otherKeys).
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: (invariantSet union: other invariants).
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: ao.!
+
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+bc := A subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+ao := bc new.
+
+((cb class: ac) method: 'wosiakowa')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: ac) method: 'rozmaita')
+	addPrecondition: [:qac | qac x notNil].
+((cb class: bc) method: 'rozmaita')
+	addPrecondition: [:qbc | qbc x notNil].
+
+cb contractFor: ao.!
+
+"21:30:17, 20 czerwca 2015: Image saved"!

@@ -1174,3 +1174,75 @@ ShellView(View)>>wmCommand:wParam:lParam:
 ShellView(View)>>dispatchMessage:wParam:lParam:
 ----------------------------------------------------------------------------------------------------
 
+21:22:42, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('CBMethod does not understand #key')
+
+CBMethod(Object)>>doesNotUnderstand:
+Dictionary>>add:
+[] in Dictionary(Collection)>>addAll:
+Dictionary>>do:
+Dictionary(Collection)>>addAll:
+CBClass>>sum:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>inspectIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+----------------------------------------------------------------------------------------------------
+
+21:27:19, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('CBMethod does not understand #key')
+
+CBMethod(Object)>>doesNotUnderstand:
+Dictionary>>add:
+[] in Dictionary(Collection)>>addAll:
+Dictionary>>do:
+Dictionary(Collection)>>addAll:
+CBClass>>sum:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+----------------------------------------------------------------------------------------------------
+
+21:28:05, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('CBMethod does not understand #key')
+
+CBMethod(Object)>>doesNotUnderstand:
+Dictionary>>keysAndValuesDo:
+Dictionary>>keysDo:
+Dictionary>>keys
+CBClass>>sum:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+----------------------------------------------------------------------------------------------------
+
