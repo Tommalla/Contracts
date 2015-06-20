@@ -469,3 +469,150 @@ method: meth
 
 "22:20:00, 19 czerwca 2015: Image saved"!
 
+"15:33:24, 20 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+"15:33:51, 20 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+Object subclass: #CBMethod
+	instanceVariableNames: 'preSet postSet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBMethod class methodsFor!
+new
+	^self initialize! !
+!CBMethod class categoriesFor: #new!public! !
+
+!CBMethod methodsFor!
+initialize
+	preSet = Set new.
+	postSet = Set new.! !
+!CBMethod categoriesFor: #initialize!public! !
+
+!CBMethod class methodsFor!
+new
+	^super initialize! !
+!CBMethod class categoriesFor: #new!public! !
+
+!CBMethod class methodsFor!
+new
+	^super new initialize! !
+!CBMethod class categoriesFor: #new!public! !
+
+cb := ContractBuilder new!
+
+o := cb class: ContractBuilder!
+
+o method: #class!
+
+!CBMethod methodsFor!
+addPrecondition: cond
+	preSet add: cond! !
+!CBMethod categoriesFor: #addPrecondition:!public! !
+
+!CBMethod methodsFor!
+removePrecondition: cond
+	preSet remove: cond! !
+!CBMethod categoriesFor: #removePrecondition:!public! !
+
+!CBMethod methodsFor!
+addPostcondition: cond
+	postSet add: cond! !
+!CBMethod categoriesFor: #addPostcondition:!public! !
+
+!CBMethod methodsFor!
+removePostcondition: cond
+	postSet remove: cond! !
+!CBMethod categoriesFor: #removePostcondition:!public! !
+
+m := o method: #class!
+
+m addPrecondition: 1!
+
+!CBMethod methodsFor!
+initialize
+	preSet = Set new,
+	postSet = Set new! !
+!CBMethod categoriesFor: #initialize!public! !
+
+!CBMethod methodsFor!
+initialize
+	preSet = Set new,
+	postSet = Set new! !
+!CBMethod categoriesFor: #initialize!public! !
+
+m := o method: #class!
+
+m addPrecondition: 1!
+
+m addPrecondition: 1.!
+
+cb := ContractBuilder new.
+o := cb class: ContractBuilder.
+m := o method: #class.
+m addPrecondition: 1.!
+
+cb := ContractBuilder new.
+o := cb class: ContractBuilder.
+m := o method: #class.
+m addPrecondition: 1.!
+
+Object subclass: #CBMethod
+	instanceVariableNames: 'meth preSet postSet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBMethod methodsFor!
+method: aMeth
+	! !
+!CBMethod categoriesFor: #method:!public! !
+
+!CBMethod methodsFor!
+method: aMeth
+	meth := aMeth! !
+!CBMethod categoriesFor: #method:!public! !
+
+!CBMethod methodsFor!
+method: aMeth
+	meth := aMeth! !
+!CBMethod categoriesFor: #method:!public! !
+
+!CBClass methodsFor!
+method: meth
+	^(methodDict at: meth ifAbsent: [methodDict at: meth put: ((CBMethod new) method: meth)])! !
+!CBClass categoriesFor: #method:!public! !
+
+!CBClass methodsFor!
+method: meth
+	^(methodDict at: meth ifAbsent: [methodDict at: meth put: ((CBMethod new) method: meth)])! !
+!CBClass categoriesFor: #method:!public! !
+
+!CBMethod methodsFor!
+initialize
+	preSet := Set new.
+	postSet := Set new! !
+!CBMethod categoriesFor: #initialize!public! !
+
+m := o method: #class.!
+
+m addPrecondition: 1.!
+
+!CBMethod methodsFor!
+method
+	^meth! !
+!CBMethod categoriesFor: #method!public! !
+
+CBMethod removeSelector: #method ifAbsent: []!
+
+!CBMethod methodsFor!
+method: aMeth
+	meth := aMeth! !
+!CBMethod categoriesFor: #method:!public! !
+
+"16:01:08, 20 czerwca 2015: Image saved"!
+
+"16:01:11, 20 czerwca 2015: Image saved"!
+
+"16:01:18, 20 czerwca 2015: Image saved"!
