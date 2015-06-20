@@ -1030,3 +1030,147 @@ CommandQuery>>perform
 DelegatingCommandPolicy(CommandPolicy)>>route:
 ----------------------------------------------------------------------------------------------------
 
+19:34:44, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Instrument does not understand #printString')
+
+Instrument(ProtoObject)>>doesNotUnderstand:
+SmalltalkWorkspace>>showResult:at:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+ShellView(View)>>onCommand:
+ShellView(View)>>wmCommand:wParam:lParam:
+ShellView(View)>>dispatchMessage:wParam:lParam:
+----------------------------------------------------------------------------------------------------
+
+19:35:28, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Instrument does not understand #class')
+
+Instrument(ProtoObject)>>doesNotUnderstand:
+BasicInspector>>getFieldList
+BasicInspector>>onValueChanged
+BasicInspector>>model:
+BasicInspector(Presenter)>>on:
+BasicInspector class(Presenter class)>>on:
+BasicInspector class(Presenter class)>>create:in:on:
+BasicInspector class(Presenter class)>>createIn:on:
+BasicInspector class>>shellOn:
+Instrument(ProtoObject)>>basicInspect
+Instrument(ProtoObject)>>inspect
+SmalltalkWorkspace>>inspectIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+----------------------------------------------------------------------------------------------------
+
+19:36:26, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Instrument does not understand #printString')
+
+Instrument(ProtoObject)>>doesNotUnderstand:
+SmalltalkWorkspace>>showResult:at:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+ShellView(View)>>onCommand:
+ShellView(View)>>wmCommand:wParam:lParam:
+ShellView(View)>>dispatchMessage:wParam:lParam:
+----------------------------------------------------------------------------------------------------
+
+19:36:31, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('DevelopmentSessionManager does not understand #replaceSelectionIn:')
+
+DevelopmentSessionManager(Object)>>doesNotUnderstand:
+ScintillaView(TextEdit)>>replaceSelection:
+SmalltalkWorkspace>>replaceSelection:
+SmalltalkWorkspace>>showResult:at:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+ShellView(View)>>onCommand:
+----------------------------------------------------------------------------------------------------
+
+19:51:43, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('ProtoObject does not understand #printString')
+
+ProtoObject>>doesNotUnderstand:
+SmalltalkWorkspace>>showResult:at:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+ShellView(View)>>onCommand:
+ShellView(View)>>wmCommand:wParam:lParam:
+ShellView(View)>>dispatchMessage:wParam:lParam:
+----------------------------------------------------------------------------------------------------
+
+19:52:03, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('ProtoObject does not understand #printString')
+
+ProtoObject>>doesNotUnderstand:
+SmalltalkWorkspace>>showResult:at:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+ShellView(View)>>onCommand:
+ShellView(View)>>wmCommand:wParam:lParam:
+ShellView(View)>>dispatchMessage:wParam:lParam:
+----------------------------------------------------------------------------------------------------
+

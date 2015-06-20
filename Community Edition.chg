@@ -1301,3 +1301,193 @@ x ^x! !
 !A categoriesFor: #x!public! !
 
 "19:25:30, 20 czerwca 2015: Image saved"!
+
+!Instrument class methodsFor!
+contract: contr on: obj
+	^(Instrument new) ! !
+!Instrument class categoriesFor: #contract:on:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!Instrument class methodsFor!
+new
+	^super new! !
+!Instrument class categoriesFor: #new!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+p :=ProtoObject new.!
+
+p :=ProtoObject new.!
+
+p :=ProtoObject new.!
+
+p :=ProtoObject new.!
+
+!ContractViolation methodsFor!
+isResumable
+	^true! !
+!ContractViolation categoriesFor: #isResumable!public! !
+
+ContractViolation subclass: #InvariantViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+InvariantViolation guid: (GUID fromString: '{93771876-6E5D-41DA-BBB7-A055B559CD73}')!
+InvariantViolation comment: ''!
+!InvariantViolation categoriesForClass!Unclassified! !
+ContractViolation subclass: #ConditionViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ConditionViolation guid: (GUID fromString: '{4A410916-2BB2-4B1C-8141-9C242661B547}')!
+ConditionViolation comment: ''!
+!ConditionViolation categoriesForClass!Unclassified! !
+ConditionViolation subclass: #PreconditionViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+PreconditionViolation guid: (GUID fromString: '{4516B15B-74D3-4482-9AD0-2CC07A87CFD5}')!
+PreconditionViolation comment: ''!
+!PreconditionViolation categoriesForClass!Unclassified! !
+ConditionViolation subclass: #PostconditionViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+PostconditionViolation guid: (GUID fromString: '{6347CAA0-DABE-4733-975A-9C95B1C581F8}')!
+PostconditionViolation comment: ''!
+!PostconditionViolation categoriesForClass!Unclassified! !
+Error subclass: #ContractViolation
+	instanceVariableNames: 'obj'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!ContractViolation methodsFor!
+object: aObj
+	obj := aObj.
+	! !
+!ContractViolation categoriesFor: #object:!public! !
+
+!ContractViolation methodsFor!
+object
+	^obj! !
+!ContractViolation categoriesFor: #object!public! !
+
+Error subclass: #ContractViolation
+	instanceVariableNames: 'obj cond'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!ContractViolation methodsFor!
+condition: aCond
+	cond := aCond.! !
+!ContractViolation categoriesFor: #condition:!public! !
+
+!ContractViolation methodsFor!
+condition
+	^cond! !
+!ContractViolation categoriesFor: #condition!public! !
+
+ContractViolation subclass: #ConditionViolation
+	instanceVariableNames: 'meth'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!ConditionViolation methodsFor!
+method: aMeth
+	meth := aMeth.! !
+!ConditionViolation categoriesFor: #method:!public! !
+
+!ConditionViolation methodsFor!
+method
+	^meth! !
+!ConditionViolation categoriesFor: #method!public! !
+
+"20:45:30, 20 czerwca 2015: Image saved"!
