@@ -616,3 +616,216 @@ method: aMeth
 "16:01:11, 20 czerwca 2015: Image saved"!
 
 "16:01:18, 20 czerwca 2015: Image saved"!
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls|
+	cls := obj class.
+	
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+!CBMethod methodsFor!
+sum: other
+	|res|
+	res := CBMethod new! !
+!CBMethod categoriesFor: #sum:!public! !
+
+!CBMethod methodsFor!
+sum: other
+	|res|
+	res := CBMethod new.
+
+	^res! !
+!CBMethod categoriesFor: #sum:!public! !
+
+!CBMethod methodsFor!
+preConditions
+	^preSet! !
+!CBMethod categoriesFor: #preConditions!public! !
+
+!CBMethod methodsFor!
+postConditions
+	^postSet! !
+!CBMethod categoriesFor: #postConditions!public! !
+
+!CBMethod methodsFor!
+preConditions: conditions
+	preSet := conditions! !
+!CBMethod categoriesFor: #preConditions:!public! !
+
+!CBMethod methodsFor!
+postConditions: conditions
+	postSet := conditions! !
+!CBMethod categoriesFor: #postConditions:!public! !
+
+!CBMethod methodsFor!
+sum: other
+	|res|
+	res := CBMethod new.
+	res preConditions: (self preConditions + other preConditions).
+	^res! !
+!CBMethod categoriesFor: #sum:!public! !
+
+!CBMethod methodsFor!
+sum: other
+	|res|
+	res := CBMethod new.
+	res preConditions: (self preConditions + other preConditions).
+	res postConditions: (self postConditions + other postConditions).
+	^res! !
+!CBMethod categoriesFor: #sum:!public! !
+
+!CBMethod methodsFor!
+sum: other
+	|res|
+	res := CBMethod new.
+	res preConditions: (self preConditions + other preConditions).
+	res postConditions: (self postConditions + other postConditions).
+	^res! !
+!CBMethod categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+methods: meths
+	methodDict := meths.! !
+!CBClass categoriesFor: #methods:!public! !
+
+!CBClass methodsFor!
+methods: meths
+	methodDict := meths! !
+!CBClass categoriesFor: #methods:!public! !
+
+!CBClass methodsFor!
+methods: meths
+	methodDict := meths.! !
+!CBClass categoriesFor: #methods:!public! !
+
+!CBClass methodsFor!
+methods
+	^methodDict! !
+!CBClass categoriesFor: #methods!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res|
+	res := CBClass new.
+	
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum|
+	res := CBClass new.
+
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := selfKeys & otherKeys.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := selfKeys & otherKeys.
+	commonKeys do: [:key | mSum at: key put: (methodDict at: key sum: other methods at: key)].
+	res methods: mSum.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := selfKeys & otherKeys.
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := selfKeys & otherKeys.
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+cb := ContractBuilder new.!
+
+o := cb class: ContractBuilder.!
+
+m := o method: #class!
+
+m addPrecondition: 1!
+
+!CBClass methodsFor!
+invariants
+	^invariantSet! !
+!CBClass categoriesFor: #invariants!public! !
+
+!CBClass methodsFor!
+invariants: invs
+	invariantSet := invs.! !
+!CBClass categoriesFor: #invariants:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := selfKeys & otherKeys.
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: invariantSet + other invariants.
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+"16:55:03, 20 czerwca 2015: Image saved"!
