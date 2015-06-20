@@ -829,3 +829,475 @@ sum: other
 !CBClass categoriesFor: #sum:!public! !
 
 "16:55:03, 20 czerwca 2015: Image saved"!
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res|
+	cls := obj class.
+	
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+1 !!= 2!
+
+1 \= 2!
+
+1 = 2!
+
+1 = 2 negated!
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) class: cls.
+	b := [:jmp |  (cls = #Object) negated ifTrue: [] ]
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) class: cls.
+	b := [:jmp |  (cls = #Object) negated ifTrue: [] ].
+	b b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) class: cls.
+	b := [:jmp |  (cls = #Object) negated ifTrue: [] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+cb := ContractBuilder new.
+o := cb class: ContractBuilder.
+o addInvariant: [:q | q x notNil].
+cb class: ContractBuilder!
+
+cb class: ContractBuilder!
+
+cb := ContractBuilder new.
+o := cb class: 'wosiaczek'.
+o addInvariant: [:q | q x notNil].
+cb class: 'wosiaczek'!
+
+cb class: 'wosiaczek'!
+
+chuj := cb class: 'wosiaczek'.!
+
+chuj!
+
+cb := ContractBuilder new.
+o := cb class: 'wosiaczek'.
+o addInvariant: [:q | q x notNil].
+chuj := cb class: 'wosiaczek'.
+chuj!
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) class: cls.
+	b := [:jmp |  (cls = #Object) negated ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = #Object) negated ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls class = #Object) negated ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  ((cls class) = #Object) negated ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  ((cls class) = #Object) negated ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  ((cls class) = #Object) not ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!CBMethod methodsFor!
+sum: other
+	|res|
+	res := CBMethod new.
+	res preConditions: (self preConditions union: (other preConditions)).
+	res postConditions: (self postConditions union: (other postConditions)).
+	^res! !
+!CBMethod categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := (selfKeys intersection: otherKeys).
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: (invariantSet union: other invariants).
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+!CBClass methodsFor!
+sum: other
+	|res mSum selfKeys otherKeys commonKeys|
+	res := CBClass new.
+	mSum := methodDict.
+	mSum addAll: other methods.
+	selfKeys := methodDict keys.
+	otherKeys := other methods keys.
+	commonKeys := (selfKeys intersection: otherKeys).
+	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
+	res methods: mSum.
+	res invariants: (invariantSet union: other invariants).
+	^res! !
+!CBClass categoriesFor: #sum:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = #Object) not ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [^(CBClass new)]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = #Object) not ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [CBClass new]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!ContractBuilder methodsFor!
+contractFor: obj
+	|cls res b|
+	cls := obj class.
+	res := (CBClass new) c: cls.
+	b := [:jmp |  (cls = Object) not ifTrue: [
+		res := res sum: (cbcDict at: cls ifAbsent: [CBClass new]).
+		cls := cls superclass.
+		jmp value: jmp] ].
+	b value: b.
+	^res
+	! !
+!ContractBuilder categoriesFor: #contractFor:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+"19:25:30, 20 czerwca 2015: Image saved"!

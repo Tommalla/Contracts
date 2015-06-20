@@ -862,3 +862,171 @@ ShellView>>performCommand:
 SmalltalkWorkspaceDocument(Shell)>>performCommand:
 ----------------------------------------------------------------------------------------------------
 
+17:11:19, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('SmallInteger does not understand #!=')
+
+SmallInteger(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+17:11:25, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('SmallInteger does not understand #\=')
+
+SmallInteger(Object)>>doesNotUnderstand:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Cursor>>showWhile:
+----------------------------------------------------------------------------------------------------
+
+18:38:05, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('CBClass does not understand #class:')
+
+CBClass(Object)>>doesNotUnderstand:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+----------------------------------------------------------------------------------------------------
+
+18:43:02, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('False does not understand #negated')
+
+False(Object)>>doesNotUnderstand:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+----------------------------------------------------------------------------------------------------
+
+18:49:46, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('False does not understand #negated')
+
+False(Object)>>doesNotUnderstand:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+BlockClosure>>ifCurtailed:
+----------------------------------------------------------------------------------------------------
+
+18:50:56, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('Set does not understand #&')
+
+Set(Object)>>doesNotUnderstand:
+CBClass>>sum:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+[] in ShellView(View)>>onCommand:
+----------------------------------------------------------------------------------------------------
+
+19:23:36, 20 czerwca 2015: Unhandled exception - a MessageNotUnderstood('UndefinedObject does not understand #superclass')
+
+Object>>doesNotUnderstand:
+[] in ContractBuilder>>contractFor:
+[] in ContractBuilder>>contractFor:
+[] in ContractBuilder>>contractFor:
+ContractBuilder>>contractFor:
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateRange:ifFail:
+SmalltalkWorkspace>>displayIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
