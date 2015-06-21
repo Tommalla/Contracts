@@ -27,12 +27,12 @@ package!
 "Class Definitions"!
 
 Object subclass: #CBClass
-	instanceVariableNames: 'c invToAdd invToRemove parentInvSet methodDict'
+	instanceVariableNames: 'invToAdd invToRemove parentInvSet methodDict'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 Object subclass: #CBMethod
-	instanceVariableNames: 'meth preSet postSet'
+	instanceVariableNames: 'preSet postSet'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -72,9 +72,6 @@ addInvariant: inv
 	invToAdd add: inv.
 	(invToRemove includes: inv) ifTrue: [invToRemove remove: inv].!
 
-c: cls
-	c := cls!
-
 initialize
 	invToAdd := Set new.
 	invToRemove := Set new.
@@ -88,7 +85,7 @@ invariants: invs
 	parentInvSet := invs.!
 
 method: meth
-	^(methodDict at: meth ifAbsent: [methodDict at: meth put: ((CBMethod new) method: meth)])!
+	^(methodDict at: meth ifAbsent: [methodDict at: meth put: (CBMethod new)])!
 
 methods
 	^methodDict!
@@ -114,7 +111,6 @@ sum: other
 	(other invariants) do: [:inv | res addInvariant: inv].
 	^res! !
 !CBClass categoriesFor: #addInvariant:!public! !
-!CBClass categoriesFor: #c:!public! !
 !CBClass categoriesFor: #initialize!public! !
 !CBClass categoriesFor: #invariants!public! !
 !CBClass categoriesFor: #invariants:!public! !
@@ -146,9 +142,6 @@ initialize
 	preSet := Set new.
 	postSet := Set new!
 
-method: aMeth
-	meth := aMeth!
-
 postConditions
 	^postSet!
 
@@ -176,7 +169,6 @@ sum: other
 !CBMethod categoriesFor: #addPostcondition:!public! !
 !CBMethod categoriesFor: #addPrecondition:!public! !
 !CBMethod categoriesFor: #initialize!public! !
-!CBMethod categoriesFor: #method:!public! !
 !CBMethod categoriesFor: #postConditions!public! !
 !CBMethod categoriesFor: #postConditions:!public! !
 !CBMethod categoriesFor: #preConditions!public! !
@@ -214,7 +206,7 @@ contractFor: obj
 	!
 
 getClass: cls
-	^(cbcDict at: cls ifAbsent: [cbcDict at: cls put: ((CBClass new) c: cls)])!
+	^(cbcDict at: cls ifAbsent: [cbcDict at: cls put: (CBClass new)])!
 
 initialize
 	cbcDict := Dictionary new! !
