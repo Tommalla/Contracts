@@ -73,10 +73,10 @@ addInvariant: inv
 	(invToRemove includes: inv) ifTrue: [invToRemove remove: inv].!
 
 initialize
-	invToAdd := Set new.
-	invToRemove := Set new.
+	invToAdd := IdentitySet new.
+	invToRemove := IdentitySet new.
 	methodDict := Dictionary new.
-	parentInvSet := Set new.!
+	parentInvSet := IdentitySet new.!
 
 invariants
 	^(((parentInvSet copy) union: (invToAdd copy)) difference: invToRemove)!
@@ -139,8 +139,8 @@ addPrecondition: cond
 	preSet add: cond!
 
 initialize
-	preSet := Set new.
-	postSet := Set new!
+	preSet := IdentitySet new.
+	postSet := IdentitySet new.!
 
 postConditions
 	^postSet!
