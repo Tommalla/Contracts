@@ -206,7 +206,11 @@ class: cls
 	^(((self getClass: cls) invariants: (res invariants)) methods: (res methods))!
 
 contractFor: obj
-	^((CBClass new) invariants: (self class: (obj class)) invariants copy)
+	|orig invs meths|
+	orig := self class: (obj class).
+	invs := orig invariants copy.
+	meths := orig methods copy.
+	^(((CBClass new) invariants: invs) methods: meths)
 	!
 
 getClass: cls

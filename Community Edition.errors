@@ -3223,3 +3223,147 @@ CommandQuery>>perform
 DelegatingCommandPolicy(CommandPolicy)>>route:
 ----------------------------------------------------------------------------------------------------
 
+12:37:34, 21 czerwca 2015: Unhandled exception - a RaisedSignal('assertion failure')
+
+Signal>>signal
+Object>>assert:
+[] in UndefinedObject>>{unbound}doIt
+[] in UndefinedObject>>{unbound}doIt
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>evaluateIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
+12:37:46, 21 czerwca 2015: Unhandled exception - a RaisedSignal('assertion failure')
+
+Signal>>signal
+Object>>assert:
+[] in UndefinedObject>>{unbound}doIt
+[] in UndefinedObject>>{unbound}doIt
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>evaluateIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
+12:37:48, 21 czerwca 2015: Unhandled exception - a RaisedSignal('assertion failure')
+
+Signal>>signal
+Object>>assert:
+[] in UndefinedObject>>{unbound}doIt
+[] in UndefinedObject>>{unbound}doIt
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>evaluateIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
+12:39:23, 21 czerwca 2015: Unhandled exception - a RaisedSignal('assertion failure')
+
+Signal>>signal
+Object>>assert:
+[] in UndefinedObject>>{unbound}doIt
+[] in UndefinedObject>>{unbound}doIt
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>evaluateIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
+12:45:37, 21 czerwca 2015: Unhandled exception - a RaisedSignal('assertion failure')
+
+Signal>>signal
+Object>>assert:
+[] in UndefinedObject>>{unbound}doIt
+[] in UndefinedObject>>{unbound}doIt
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>evaluateIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
+12:45:45, 21 czerwca 2015: Unhandled exception - a RaisedSignal('assertion failure')
+
+Signal>>signal
+Object>>assert:
+[] in UndefinedObject>>{unbound}doIt
+[] in UndefinedObject>>{unbound}doIt
+UndefinedObject>>{unbound}doIt
+CompiledExpression>>value:
+SmalltalkWorkspace>>evaluateRange:ifFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:debug:
+SmalltalkWorkspace>>evaluateItIfFail:
+SmalltalkWorkspace>>evaluateIt
+Symbol>>forwardTo:
+CommandDescription>>performAgainst:
+[] in Command>>value
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+Command>>value
+ShellView>>performCommand:
+SmalltalkWorkspaceDocument(Shell)>>performCommand:
+CommandQuery>>perform
+DelegatingCommandPolicy(CommandPolicy)>>route:
+----------------------------------------------------------------------------------------------------
+
