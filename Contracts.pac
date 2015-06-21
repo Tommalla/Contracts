@@ -27,7 +27,7 @@ package!
 "Class Definitions"!
 
 Object subclass: #CBClass
-	instanceVariableNames: 'invToAdd invToRemove parentInvSet methodDict'
+	instanceVariableNames: 'invToAddSet invToRemoveSet parentInvSet methodDict'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -69,17 +69,17 @@ CBClass comment: ''!
 !CBClass methodsFor!
 
 addInvariant: inv
-	invToAdd add: inv.
-	(invToRemove includes: inv) ifTrue: [invToRemove remove: inv].!
+	invToAddSet add: inv.
+	(invToRemoveSet includes: inv) ifTrue: [invToRemoveSet remove: inv].!
 
 initialize
-	invToAdd := IdentitySet new.
-	invToRemove := IdentitySet new.
+	invToAddSet := IdentitySet new.
+	invToRemoveSet := IdentitySet new.
 	methodDict := Dictionary new.
 	parentInvSet := IdentitySet new.!
 
 invariants
-	^(((parentInvSet copy) union: (invToAdd copy)) difference: invToRemove)!
+	^(((parentInvSet copy) union: (invToAddSet copy)) difference: invToRemoveSet)!
 
 invariants: invs
 	parentInvSet := invs.!
@@ -94,8 +94,8 @@ methods: meths
 	methodDict := meths.!
 
 removeInvariant: inv
-	invToRemove add: inv.
-	(invToAdd includes: inv) ifTrue: [invToAdd remove: inv].!
+	invToRemoveSet add: inv.
+	(invToAddSet includes: inv) ifTrue: [invToAddSet remove: inv].!
 
 sum: other
 	|res mSum selfKeys otherKeys commonKeys|
