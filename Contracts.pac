@@ -69,6 +69,7 @@ CBClass comment: ''!
 !CBClass methodsFor!
 
 addInvariant: inv
+	"Adds the invariant to the class representation."
 	invToAddSet add: inv.
 	(invToRemoveSet includes: inv) ifTrue: [invToRemoveSet remove: inv].!
 
@@ -79,25 +80,31 @@ initialize
 	parentInvSet := IdentitySet new.!
 
 invariants
+	"Returns all the invariants for the given class."
 	^(((parentInvSet copy) union: (invToAddSet copy)) difference: invToRemoveSet)!
-
-invariants: invs
-	parentInvSet := invs.!
 
 method: meth
 	^(methodDict at: meth ifAbsent: [methodDict at: meth put: (CBMethod new)])!
 
 methods
+	"Returns the dictionary with all methods for the class."
 	^methodDict!
 
 methods: meths
+	"Setter for methods."
 	methodDict := meths.!
 
+parentInvariants: invs
+	"Setter for parent invariants. Sets the parent invariants of this class to the given value (Set)."
+	parentInvSet := invs.!
+
 removeInvariant: inv
+	"Removes the invariant from the class representation."
 	invToRemoveSet add: inv.
 	(invToAddSet includes: inv) ifTrue: [invToAddSet remove: inv].!
 
 sum: other
+	"Returns a new object representing a sum of invariants and method conditions for 2 class objects."
 	|res mSum selfKeys otherKeys commonKeys|
 	res := CBClass new.
 	mSum := methodDict copy.
@@ -107,16 +114,16 @@ sum: other
 	commonKeys := (selfKeys intersection: otherKeys).
 	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
 	res methods: mSum.
-	res invariants: self invariants.
+	res parentInvariants: self invariants.
 	(other invariants) do: [:inv | res addInvariant: inv].
 	^res! !
 !CBClass categoriesFor: #addInvariant:!public! !
 !CBClass categoriesFor: #initialize!public! !
 !CBClass categoriesFor: #invariants!public! !
-!CBClass categoriesFor: #invariants:!public! !
 !CBClass categoriesFor: #method:!public! !
 !CBClass categoriesFor: #methods!public! !
 !CBClass categoriesFor: #methods:!public! !
+!CBClass categoriesFor: #parentInvariants:!public! !
 !CBClass categoriesFor: #removeInvariant:!public! !
 !CBClass categoriesFor: #sum:!public! !
 
@@ -195,17 +202,18 @@ class: cls
 		jmp value: jmp value: (locC superclass).
 		res := res sum: (self getClass: locC).] ].
 	b value: b value: cls.
-	^(((self getClass: cls) invariants: (res invariants)) methods: (res methods))!
+	^(((self getClass: cls) parentInvariants: (res invariants)) methods: (res methods))!
 
 contractFor: obj
 	|orig invs meths|
 	orig := self class: (obj class).
 	invs := orig invariants copy.
 	meths := orig methods copy.
-	^(((CBClass new) invariants: invs) methods: meths)
+	^(((CBClass new) parentInvariants: invs) methods: meths)
 	!
 
 getClass: cls
+	"Extract or create a class representatio object."
 	^(cbcDict at: cls ifAbsent: [cbcDict at: cls put: (CBClass new)])!
 
 initialize
@@ -260,26 +268,29 @@ contract: aContr object: aObj
 doesNotUnderstand: msg
 	|invariants meth args res|
 	invariants := contr invariants.
-	invariants do: [:inv | 
-		(inv value: obj) ifFalse: [(((InvariantViolation new) object: obj) condition: inv) signal]
-	].
+	self executeInvariants: invariants.
 	meth := msg selector.
 	args := (#(obj), msg arguments).
-	((contr method: meth) preConditions) do: [:preCond |
-		(preCond valueWithArguments: args) ifFalse:  [((((PreconditionViolation new) object: obj) condition: preCond) method: meth) signal.]
+	((contr method: meth) preConditions) do: [:preCond |	
+		(preCond valueWithArguments: args) ifFalse:  [((((PreconditionViolation new) object: obj) condition: preCond) method: meth) signal.].
 	].
 	res := msg forwardTo: obj.
-	invariants do: [:inv | 
-		(inv value: obj) ifFalse: [(((InvariantViolation new) object: obj) condition: inv) signal.]
-	].
-	((contr method: meth) postConditions) do: [:postCond |
-		(postCond valueWithArguments: (args, #(res))) ifFalse:  [((((PostconditionViolation new) object: obj) condition: postCond) method: meth) signal.]
+	self executeInvariants: invariants.
+	((contr method: meth) postConditions) do: [:postCond |	
+		(postCond valueWithArguments: (args,#(res))) ifFalse:  [((((PostconditionViolation new) object: obj) condition: postCond) method: meth) signal.].
 	].
 	^res
 	
-	! !
+	!
+
+executeInvariants: invariants
+	"Executes and checks if the invariants hold for the contract."
+	invariants do: [:inv | 
+		(inv value: obj) ifFalse: [(((InvariantViolation new) object: obj) condition: inv) signal]
+	].! !
 !Instrument categoriesFor: #contract:object:!public! !
 !Instrument categoriesFor: #doesNotUnderstand:!public! !
+!Instrument categoriesFor: #executeInvariants:!private! !
 
 !Instrument class methodsFor!
 
