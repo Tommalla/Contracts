@@ -70,7 +70,7 @@ ProtoObject subclass: #Instrument
 "Classes"!
 
 CBClass guid: (GUID fromString: '{AA5CF289-B320-4A84-93E6-5B66093399B4}')!
-CBClass comment: ''!
+CBClass comment: 'A simple object that represents a contract for a class. It allows for changing the invariants and has a getter for methods which can change conditions.'!
 !CBClass categoriesForClass!Unclassified! !
 !CBClass methodsFor!
 
@@ -152,7 +152,7 @@ new
 !CBClass class categoriesFor: #new!public! !
 
 CBMethod guid: (GUID fromString: '{A0B100F8-85ED-443D-B563-1BD230FD1FA7}')!
-CBMethod comment: ''!
+CBMethod comment: 'A CBClass counterpart for methods.'!
 !CBMethod categoriesForClass!Unclassified! !
 !CBMethod methodsFor!
 
@@ -224,15 +224,20 @@ ContractBuilder comment: ''!
 !ContractBuilder methodsFor!
 
 class: cls
+	"Creates an object that is aware of the invariants and method conditions of all it's superclasses at the time of creation and can store info about their changes."
 	|b res|
 	res := self getClass: cls.
-	b := [:jmp :locC |  (locC = Object) ifFalse: [
-		jmp value: jmp value: (locC superclass).
-		res := res sum: (self getClass: locC).] ].
+	"A recursive block."
+	b := [:jmp :locC |  
+		(locC = Object) ifFalse: [
+			jmp value: jmp value: (locC superclass).
+			res := res sum: (self getClass: locC).] 
+	].
 	b value: b value: cls.
 	^(((self getClass: cls) parentInvariants: (res invariants)) methods: (res methods))!
 
 contractFor: obj
+	"Creates a semi-deep copy of an object that would be created for the #class call for the given class."
 	|orig invs meths|
 	orig := self class: (obj class).
 	invs := orig invariants copy.
@@ -288,7 +293,7 @@ MalformedContract guid: (GUID fromString: '{17F290E8-9E6C-44E3-A670-3BEEA8190395
 MalformedContract comment: ''!
 !MalformedContract categoriesForClass!Unclassified! !
 Instrument guid: (GUID fromString: '{EE67588F-9932-4A26-84ED-DCFBFB23B286}')!
-Instrument comment: ''!
+Instrument comment: 'A class that represents an object ''augmented'' with invariants and pre/post conditions control.'!
 !Instrument categoriesForClass!Unclassified! !
 !Instrument methodsFor!
 
@@ -301,6 +306,7 @@ doesNotUnderstand: msg
 	invariants := contr invariants.
 	self executeInvariants: invariants.
 	meth := msg selector.
+	"One-elem arrays created dynamically (no #())."
 	objArr := Array new: 1.
 	resArr := Array new: 1.
 	objArr at: 1 put: obj.
