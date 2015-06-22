@@ -3535,3 +3535,27 @@ SmalltalkWorkspace>>evaluateItIfFail:
 SmalltalkWorkspace>>evaluateIt
 ----------------------------------------------------------------------------------------------------
 
+23:31:48, 21 czerwca 2015: Unhandled exception - a Win32Error('failed to create window (16r57E: Nie mo¿na utworzyæ okna podrzêdnego najwy¿szego poziomu.)')
+
+Toolbar(View)>>unhookWindowCreate:
+Toolbar(View)>>createAt:extent:
+MessageSend(MessageSendAbstract)>>value
+[] in MessageSequenceAbstract>>value
+OrderedCollection>>do:
+MessageSequence>>messagesDo:
+MessageSequence(MessageSequenceAbstract)>>value
+Toolbar(View)>>state:
+Toolbar(STBViewProxy)>>restoreView
+Toolbar(STBViewProxy)>>restoreTopView
+[] in Toolbar(STBViewProxy)>>stbFixup:at:
+[] in STBInFiler>>evaluateDeferredActions
+OrderedCollection>>do:
+STLInFiler(STBInFiler)>>evaluateDeferredActions
+STLInFiler(STBInFiler)>>next
+ResourceIdentifier>>loadWithContext:forEdit:
+ResourceIdentifier>>loadWithContext:
+ReferenceView>>loadReferee
+ReferenceView>>referee
+ReferenceView>>validateUserInterface
+----------------------------------------------------------------------------------------------------
+

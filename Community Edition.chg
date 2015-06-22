@@ -24142,3 +24142,1182 @@ sum: other
 
 "23:01:50, 21 czerwca 2015: Image saved"!
 
+"12:13:42, 22 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+"12:13:57, 22 czerwca 2015: Image saved"!
+
+!ContractBuilder methodsFor!
+getClass: cls
+	"Extract or create a class representation object."
+	^(cbcDict at: cls ifAbsent: [cbcDict at: cls put: (CBClass new)])! !
+!ContractBuilder categoriesFor: #getClass:!private! !
+
+"12:18:57, 22 czerwca 2015: Image saved"!
+
+"16:02:00, 22 czerwca 2015: Dolphin Smalltalk X6 Community Edition started"!
+
+Object subclass: #CBMethod
+	instanceVariableNames: 'preAddSet preParentSet preRemoveSet postAddSet postParentSet postRemoveSet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+!CBMethod methodsFor!
+postConditions
+	^(((postParentSet  copy) union: postAddSet) difference: postRemoveSet)! !
+!CBMethod categoriesFor: #postConditions!public! !
+
+!CBMethod methodsFor!
+preConditions
+	^(((preParentSet  copy) union: preAddSet) difference: preRemoveSet)! !
+!CBMethod categoriesFor: #preConditions!public! !
+
+!CBMethod methodsFor!
+postConditions: conditions
+	postParentSet := conditions! !
+!CBMethod categoriesFor: #postConditions:!public! !
+
+!CBMethod methodsFor!
+preConditions: conditions
+	preParentSet := conditions! !
+!CBMethod categoriesFor: #preConditions:!public! !
+
+!CBMethod methodsFor!
+removePostcondition: cond! !
+!CBMethod categoriesFor: #removePostcondition:!public! !
+
+!CBMethod methodsFor!
+removePrecondition: cond
+	preRemoveSet add: cond.
+	(preAddSet includes: cond) ifTrue: [preAddSet remove: cond].! !
+!CBMethod categoriesFor: #removePrecondition:!public! !
+
+!CBMethod methodsFor!
+removePostcondition: cond
+	postRemoveSet add: cond.
+	(postAddSet includes: cond) ifTrue: [postAddSet remove: cond].! !
+!CBMethod categoriesFor: #removePostcondition:!public! !
+
+!CBMethod methodsFor!
+initialize
+	preParentSet := IdentitySet new.
+	preAddSet := IdentitySet new.
+	preRemoveSet := IdentitySet new.
+	postParentSet := IdentitySet new.
+	postAddSet := IdentitySet new.
+	postRemoveSet := IdentitySet new.! !
+!CBMethod categoriesFor: #initialize!public! !
+
+!CBMethod methodsFor!
+addPrecondition: cond
+	preAddSet add: cond.
+	(preRemoveSet includes: cond) ifTrue: [preRemoveSet remove: cond].! !
+!CBMethod categoriesFor: #addPrecondition:!public! !
+
+!CBMethod methodsFor!
+addPostcondition: cond
+	postAddSet add: cond.
+	(postRemoveSet includes: cond) ifTrue: [postRemoveSet remove: cond].! !
+!CBMethod categoriesFor: #addPostcondition:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+| cb ac bc ao bo cao cbo iao ibo i1 i2 i3 i4 i5 t |
+cb := ContractBuilder new.
+ac := Object subclass: #A instanceVariableNames: 'x' classVariableNames: '' poolDictionaries: ''.
+ao := ac new.
+i1 := [:q | q x notNil].
+(cb class: ac) addInvariant: i1.
+ac compile: 'x ^x'.
+cao := cb contractFor: ao.
+iao := Instrument contract: cao on: ao.
+t := [:b :h || z |
+    z := Dictionary
+        with: InvariantViolation -> Set new
+        with: PreconditionViolation -> Set new
+        with: PostconditionViolation -> Set new.
+    b on: ContractViolation do: [:e | (z at: e class) add: e. e resume].
+    h value: (z at: InvariantViolation) value: (z at: PreconditionViolation) value: (z at: PostconditionViolation)].
+t value: [self assert: [iao x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2].
+    inv do: [:e | self assert: [e object == ao and: [e condition == i1]]]].
+ac compile: 'x: a x := a. ^x'.
+t value: [self assert: [(iao x: 1) = 1]] value:
+    [:inv :pre :post |
+    self assert: [inv size = 1]].
+cao removeInvariant: i1.
+ao x: nil.
+t value: [self assert: [(Instrument contract: cao on: ao) x isNil]] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+t value: [(Instrument contract: (cb contractFor: ao) on: ao) x] value:
+    [:inv :pre :post |
+    self assert: [inv size = 2]].
+bc := ac subclass: #B instanceVariableNames: 'y' classVariableNames: '' poolDictionaries: ''.
+bo := bc new.
+bc compile: 'y ^y'.
+i2 := [:q | q y isNil].
+i3 := [:q | 1 + 2 * 3 = 9].
+(cb class: bc)
+    addInvariant: i2;
+    removeInvariant: i1;
+    addInvariant: i3.
+cbo := cb contractFor: bo.
+t value: [(Instrument contract: cbo on: bo) y] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty]].
+i4 := [:q :a | a = 5].
+i5 := [:q :a :w | a * a = w].
+((cb class: bc) method: #f:)
+    addPrecondition: i4;
+    addPostcondition: i5.
+bc compile: 'f: a ^a * a * a'.
+ibo := Instrument contract: (cb contractFor: bo) on: bo.
+t value: [ibo f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre size = 1].
+    self assert: [post size = 1].
+    self assert:
+        [|w|
+        w := pre anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i4]]].
+    self assert:
+        [|w|
+        w := post anyOne.
+        w object == bo and:
+            [w method == #f: and:
+                [w condition == i5]]]].
+t value: [(Instrument contract: cbo on: bo) f: 4] value:
+    [:inv :pre :post |
+    self assert: [inv isEmpty].
+    self assert: [pre isEmpty].
+    self assert: [post isEmpty]]!
+
+!A methodsFor!
+x ^x! !
+!A categoriesFor: #x!public! !
+
+!A methodsFor!
+x: a x := a. ^x! !
+!A categoriesFor: #x:!public! !
+
+!B methodsFor!
+y ^y! !
+!B categoriesFor: #y!public! !
+
+!B methodsFor!
+f: a ^a * a * a! !
+!B categoriesFor: #f:!public! !
+
+!CBClass methodsFor!
+removeInvariant: inv
+	"Removes the invariant from the class representation."
+	invToRemoveSet add: inv.
+	(invToAddSet includes: inv) ifTrue: [invToAddSet remove: inv].! !
+!CBClass categoriesFor: #removeInvariant:!public! !
+
+"17:27:50, 22 czerwca 2015: Image saved"!
+

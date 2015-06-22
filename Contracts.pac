@@ -32,7 +32,7 @@ Object subclass: #CBClass
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 Object subclass: #CBMethod
-	instanceVariableNames: 'preSet postSet'
+	instanceVariableNames: 'preAddSet preParentSet preRemoveSet postAddSet postParentSet postRemoveSet'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -140,32 +140,40 @@ CBMethod comment: ''!
 !CBMethod methodsFor!
 
 addPostcondition: cond
-	postSet add: cond!
+	postAddSet add: cond.
+	(postRemoveSet includes: cond) ifTrue: [postRemoveSet remove: cond].!
 
 addPrecondition: cond
-	preSet add: cond!
+	preAddSet add: cond.
+	(preRemoveSet includes: cond) ifTrue: [preRemoveSet remove: cond].!
 
 initialize
-	preSet := IdentitySet new.
-	postSet := IdentitySet new.!
+	preParentSet := IdentitySet new.
+	preAddSet := IdentitySet new.
+	preRemoveSet := IdentitySet new.
+	postParentSet := IdentitySet new.
+	postAddSet := IdentitySet new.
+	postRemoveSet := IdentitySet new.!
 
 postConditions
-	^postSet!
+	^(((postParentSet  copy) union: postAddSet) difference: postRemoveSet)!
 
 postConditions: conditions
-	postSet := conditions!
+	postParentSet := conditions!
 
 preConditions
-	^preSet!
+	^(((preParentSet  copy) union: preAddSet) difference: preRemoveSet)!
 
 preConditions: conditions
-	preSet := conditions!
+	preParentSet := conditions!
 
 removePostcondition: cond
-	postSet remove: cond!
+	postRemoveSet add: cond.
+	(postAddSet includes: cond) ifTrue: [postAddSet remove: cond].!
 
 removePrecondition: cond
-	preSet remove: cond!
+	preRemoveSet add: cond.
+	(preAddSet includes: cond) ifTrue: [preAddSet remove: cond].!
 
 sum: other
 	|res|
@@ -213,7 +221,7 @@ contractFor: obj
 	!
 
 getClass: cls
-	"Extract or create a class representatio object."
+	"Extract or create a class representation object."
 	^(cbcDict at: cls ifAbsent: [cbcDict at: cls put: (CBClass new)])!
 
 initialize
