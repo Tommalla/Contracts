@@ -7,10 +7,14 @@ package paxVersion: 1;
 package classNames
 	add: #CBClass;
 	add: #CBMethod;
+	add: #ConditionViolation;
 	add: #ContractBuilder;
 	add: #ContractViolation;
 	add: #Instrument;
+	add: #InvariantViolation;
 	add: #MalformedContract;
+	add: #PostconditionViolation;
+	add: #PreconditionViolation;
 	yourself.
 
 package binaryGlobalNames: (Set new
@@ -48,6 +52,26 @@ Error subclass: #ContractViolation
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 Error subclass: #MalformedContract
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ContractViolation subclass: #ConditionViolation
+	instanceVariableNames: 'meth'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ContractViolation subclass: #InvariantViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ConditionViolation subclass: #PostconditionViolation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+ConditionViolation subclass: #PreconditionViolation
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -292,6 +316,28 @@ object: aObj
 MalformedContract guid: (GUID fromString: '{17F290E8-9E6C-44E3-A670-3BEEA8190395}')!
 MalformedContract comment: ''!
 !MalformedContract categoriesForClass!Unclassified! !
+ConditionViolation guid: (GUID fromString: '{4A410916-2BB2-4B1C-8141-9C242661B547}')!
+ConditionViolation comment: ''!
+!ConditionViolation categoriesForClass!Unclassified! !
+!ConditionViolation methodsFor!
+
+method
+	^meth!
+
+method: aMeth
+	meth := aMeth.! !
+!ConditionViolation categoriesFor: #method!public! !
+!ConditionViolation categoriesFor: #method:!public! !
+
+InvariantViolation guid: (GUID fromString: '{93771876-6E5D-41DA-BBB7-A055B559CD73}')!
+InvariantViolation comment: ''!
+!InvariantViolation categoriesForClass!Unclassified! !
+PostconditionViolation guid: (GUID fromString: '{6347CAA0-DABE-4733-975A-9C95B1C581F8}')!
+PostconditionViolation comment: ''!
+!PostconditionViolation categoriesForClass!Unclassified! !
+PreconditionViolation guid: (GUID fromString: '{4516B15B-74D3-4482-9AD0-2CC07A87CFD5}')!
+PreconditionViolation comment: ''!
+!PreconditionViolation categoriesForClass!Unclassified! !
 Instrument guid: (GUID fromString: '{EE67588F-9932-4A26-84ED-DCFBFB23B286}')!
 Instrument comment: 'A class that represents an object ''augmented'' with invariants and pre/post conditions control.'!
 !Instrument categoriesForClass!Unclassified! !
