@@ -10,6 +10,7 @@ package classNames
 	add: #ContractBuilder;
 	add: #ContractViolation;
 	add: #Instrument;
+	add: #MalformedContract;
 	yourself.
 
 package binaryGlobalNames: (Set new
@@ -46,6 +47,11 @@ Error subclass: #ContractViolation
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+Error subclass: #MalformedContract
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
 ProtoObject subclass: #Instrument
 	instanceVariableNames: 'contr obj'
 	classVariableNames: ''
@@ -68,10 +74,14 @@ CBClass comment: ''!
 !CBClass categoriesForClass!Unclassified! !
 !CBClass methodsFor!
 
+add: invariant to: addSet removeFrom: removeSet
+	addSet add: invariant.
+	(removeSet includes: invariant) ifTrue: [removeSet remove: invariant].!
+
 addInvariant: inv
 	"Adds the invariant to the class representation."
-	invToAddSet add: inv.
-	(invToRemoveSet includes: inv) ifTrue: [invToRemoveSet remove: inv].!
+	(self present: inv) ifTrue: [MalformedContract signal: 'Trying to add an invariant that already applies to the class!!'.].
+	self add: inv to: invToAddSet removeFrom: invToRemoveSet.!
 
 initialize
 	invToAddSet := IdentitySet new.
@@ -98,14 +108,19 @@ parentInvariants: invs
 	"Setter for parent invariants. Sets the parent invariants of this class to the given value (Set)."
 	parentInvSet := invs.!
 
+present: invariant
+	|invs|
+	invs := self invariants.
+	^invs includes: invariant.!
+
 removeInvariant: inv
 	"Removes the invariant from the class representation."
-	invToRemoveSet add: inv.
-	(invToAddSet includes: inv) ifTrue: [invToAddSet remove: inv].!
+	(self present: inv) ifFalse: [MalformedContract signal: 'Trying to remove an invariant that does not apply to the class!!'.].
+	self add: inv to: invToRemoveSet removeFrom: invToAddSet.!
 
 sum: other
 	"Returns a new object representing a sum of invariants and method conditions for 2 class objects."
-	|res mSum selfKeys otherKeys commonKeys|
+	|res mSum selfKeys otherKeys commonKeys invs|
 	res := CBClass new.
 	mSum := methodDict copy.
 	mSum addAll: ((other methods) associations).
@@ -114,9 +129,11 @@ sum: other
 	commonKeys := (selfKeys intersection: otherKeys).
 	commonKeys do: [:key | mSum at: key put: ((methodDict at: key) sum: (other methods at: key))].
 	res methods: mSum.
-	res parentInvariants: self invariants.
-	(other invariants) do: [:inv | res addInvariant: inv].
+	invs := ((self invariants) copy).
+	(other invariants) do: [:inv | invs add: inv].
+	res parentInvariants: invs.
 	^res! !
+!CBClass categoriesFor: #add:to:removeFrom:!private! !
 !CBClass categoriesFor: #addInvariant:!public! !
 !CBClass categoriesFor: #initialize!public! !
 !CBClass categoriesFor: #invariants!public! !
@@ -124,6 +141,7 @@ sum: other
 !CBClass categoriesFor: #methods!public! !
 !CBClass categoriesFor: #methods:!public! !
 !CBClass categoriesFor: #parentInvariants:!public! !
+!CBClass categoriesFor: #present:!private! !
 !CBClass categoriesFor: #removeInvariant:!public! !
 !CBClass categoriesFor: #sum:!public! !
 
@@ -139,13 +157,17 @@ CBMethod comment: ''!
 !CBMethod categoriesForClass!Unclassified! !
 !CBMethod methodsFor!
 
+add: condition to: addSet removeFrom: removeSet
+	addSet add: condition.
+	(removeSet includes: condition) ifTrue: [removeSet remove: condition].!
+
 addPostcondition: cond
-	postAddSet add: cond.
-	(postRemoveSet includes: cond) ifTrue: [postRemoveSet remove: cond].!
+	(self postConditions includes: cond) ifTrue: [MalformedContract signal: 'Trying to add a postcondition that already applies to the method!!'].
+	self add: cond to: postAddSet removeFrom: postRemoveSet.!
 
 addPrecondition: cond
-	preAddSet add: cond.
-	(preRemoveSet includes: cond) ifTrue: [preRemoveSet remove: cond].!
+	(self preConditions includes: cond) ifTrue: [MalformedContract signal: 'Trying to add a precondition that already applies to the method!!'].
+	self add: cond to: preAddSet removeFrom: preRemoveSet.!
 
 initialize
 	preParentSet := IdentitySet new.
@@ -168,12 +190,11 @@ preConditions: conditions
 	preParentSet := conditions!
 
 removePostcondition: cond
-	postRemoveSet add: cond.
-	(postAddSet includes: cond) ifTrue: [postAddSet remove: cond].!
+	self add: cond to: postRemoveSet removeFrom: postAddSet.!
 
 removePrecondition: cond
-	preRemoveSet add: cond.
-	(preAddSet includes: cond) ifTrue: [preAddSet remove: cond].!
+	(self preConditions includes: cond) ifFalse: [MalformedContract signal: 'Trying to remove a precondition that does not apply to the method!!'].
+	self add: cond to: preRemoveSet removeFrom: preAddSet.!
 
 sum: other
 	|res|
@@ -181,6 +202,7 @@ sum: other
 	res preConditions: (self preConditions union: (other preConditions)).
 	res postConditions: (self postConditions union: (other postConditions)).
 	^res! !
+!CBMethod categoriesFor: #add:to:removeFrom:!private! !
 !CBMethod categoriesFor: #addPostcondition:!public! !
 !CBMethod categoriesFor: #addPrecondition:!public! !
 !CBMethod categoriesFor: #initialize!public! !
@@ -264,6 +286,9 @@ object: aObj
 !ContractViolation categoriesFor: #object!public! !
 !ContractViolation categoriesFor: #object:!public! !
 
+MalformedContract guid: (GUID fromString: '{17F290E8-9E6C-44E3-A670-3BEEA8190395}')!
+MalformedContract comment: ''!
+!MalformedContract categoriesForClass!Unclassified! !
 Instrument guid: (GUID fromString: '{EE67588F-9932-4A26-84ED-DCFBFB23B286}')!
 Instrument comment: ''!
 !Instrument categoriesForClass!Unclassified! !
