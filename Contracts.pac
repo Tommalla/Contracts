@@ -80,7 +80,6 @@ add: invariant to: addSet removeFrom: removeSet
 
 addInvariant: inv
 	"Adds the invariant to the class representation."
-	(self present: inv) ifTrue: [MalformedContract signal: 'Trying to add an invariant that already applies to the class!!'.].
 	self add: inv to: invToAddSet removeFrom: invToRemoveSet.!
 
 initialize
@@ -162,11 +161,9 @@ add: condition to: addSet removeFrom: removeSet
 	(removeSet includes: condition) ifTrue: [removeSet remove: condition].!
 
 addPostcondition: cond
-	(self postConditions includes: cond) ifTrue: [MalformedContract signal: 'Trying to add a postcondition that already applies to the method!!'].
 	self add: cond to: postAddSet removeFrom: postRemoveSet.!
 
 addPrecondition: cond
-	(self preConditions includes: cond) ifTrue: [MalformedContract signal: 'Trying to add a precondition that already applies to the method!!'].
 	self add: cond to: preAddSet removeFrom: preRemoveSet.!
 
 initialize
@@ -190,6 +187,7 @@ preConditions: conditions
 	preParentSet := conditions!
 
 removePostcondition: cond
+	(self postConditions includes: cond) ifFalse: [MalformedContract signal: 'Trying to remove a postcondition that does not apply to the method!!'].
 	self add: cond to: postRemoveSet removeFrom: postAddSet.!
 
 removePrecondition: cond
@@ -299,18 +297,22 @@ contract: aContr object: aObj
 	obj := aObj.!
 
 doesNotUnderstand: msg
-	|invariants meth args res|
+	|invariants meth args res objArr resArr|
 	invariants := contr invariants.
 	self executeInvariants: invariants.
 	meth := msg selector.
-	args := (#(obj), msg arguments).
+	objArr := Array new: 1.
+	resArr := Array new: 1.
+	objArr at: 1 put: obj.
+	args := (objArr, msg arguments).
 	((contr method: meth) preConditions) do: [:preCond |	
 		(preCond valueWithArguments: args) ifFalse:  [((((PreconditionViolation new) object: obj) condition: preCond) method: meth) signal.].
 	].
 	res := msg forwardTo: obj.
+	resArr at: 1 put: res.
 	self executeInvariants: invariants.
 	((contr method: meth) postConditions) do: [:postCond |	
-		(postCond valueWithArguments: (args,#(res))) ifFalse:  [((((PostconditionViolation new) object: obj) condition: postCond) method: meth) signal.].
+		(postCond valueWithArguments: (args,resArr)) ifFalse:  [((((PostconditionViolation new) object: obj) condition: postCond) method: meth) signal.].
 	].
 	^res
 	
