@@ -4111,3 +4111,22 @@ Symbol>>forwardTo:
 CommandDescription>>performAgainst:
 ----------------------------------------------------------------------------------------------------
 
+22:13:53, 22 czerwca 2015: Unhandled exception - an Error('Must be boolean')
+
+SmallInteger(Object)>>error:
+SmallInteger(Object)>>mustBeBoolean
+DevelopmentSessionManager(SessionManager)>>quit:
+DevelopmentSessionManager(SessionManager)>>onQuit:
+InputState>>pumpMessage:
+InputState>>loopWhile:
+InputState>>mainLoop
+[] in InputState>>forkMain
+ExceptionHandler(ExceptionHandlerAbstract)>>markAndTry
+[] in ExceptionHandler(ExceptionHandlerAbstract)>>try:
+BlockClosure>>ifCurtailed:
+BlockClosure>>ensure:
+ExceptionHandler(ExceptionHandlerAbstract)>>try:
+BlockClosure>>on:do:
+[] in BlockClosure>>newProcess
+----------------------------------------------------------------------------------------------------
+
